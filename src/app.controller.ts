@@ -14,3 +14,13 @@ export class AppController {
     return { valid: isValid };
   }
 }
+
+@Post('validate')
+  validateCard(@Body() body: { cardNumber?: string }) {
+    if (!body.cardNumber) {
+      throw new BadRequestException('cardNumber is required');
+    }
+    const isValid = this.appService.validateCardNumber(body.cardNumber);
+    return { valid: isValid };
+  }
+}
