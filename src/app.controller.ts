@@ -5,6 +5,15 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Get()
+  getHome() {
+    return {
+      message: "Credit Card Validator API is Live!",
+      usage: "Send a POST request to /validate with a cardNumber",
+      example: { cardNumber: "4532015112830366" }
+    };
+  }
+
   @Post('validate')
   validateCard(@Body() body: { cardNumber?: string | number }) {
     if (body.cardNumber === undefined || body.cardNumber === null) {
