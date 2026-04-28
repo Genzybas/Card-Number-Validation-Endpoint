@@ -2,7 +2,10 @@
   "name": "card",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/main.js",
