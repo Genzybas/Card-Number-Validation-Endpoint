@@ -6,11 +6,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post('validate')
-  validateCard(@Body() body: { cardNumber?: string }) {
-    if (!body.cardNumber) {
+  validateCard(@Body() body: { cardNumber?: string | number }) {
+    if (body.cardNumber === undefined || body.cardNumber === null) {
       throw new BadRequestException('cardNumber is required');
     }
-    const isValid = this.appService.validateCardNumber(body.cardNumber);
+    const cardNumberStr = String(body.cardNumber);
+    const isValid = this.appService.validateCardNumber(cardNumberStr);
     return { valid: isValid };
   }
 }
